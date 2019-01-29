@@ -1,0 +1,24 @@
+<div class="content">   
+        <button ng-click="order = 'name'">Order by Name</button>
+        <button ng-click="order = 'belt'">Order by Belt</button>
+        <!-- <p> {{message}} </p> -->
+        <input type="text" ng-model="search" placeholder="search for a list">
+        <ul id="shiv-list">
+          <li ng-repeat="list in lists | orderBy :order | filter:search"ng-show="list.available">
+
+            <img ng-src="{{list.thumb}}" style="margin:-12px 10px 0 0; float:left; width:50px;" ng-show="list.thumb">
+            <h3>{{list.name}} - {{list.rate | currency:'Rs.'}}</h3>
+            <div class="remove" ng-click="removeList(list)">x</div>
+            <span class="belt" style="background: {{list.belt}} "> {{list.belt}} belt </span> 
+          </li>
+        </ul>
+
+        <form ng-submit="addList()">
+          <input type="text" placeholder="name" ng-model="newlist.name">
+          <input type="text" placeholder="belt" ng-model="newlist.belt">
+          <input type="text" placeholder="rate" ng-model="newlist.rate">
+          <input type="submit" value="Add new list">
+        </form>
+
+        <a href="" ng-click="removeAll()">Remove all lists</a>
+</div>
